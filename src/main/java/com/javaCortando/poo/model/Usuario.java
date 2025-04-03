@@ -1,29 +1,31 @@
 package com.javaCortando.poo.model;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
-@Entity
-@Table
+@MappedSuperclass
 public class Usuario {
 
-    @Id
-    @Column(name = "id")
-    private int  id;
-
-    @Column(name = "nome")
+    @Column(name = "nome", length = 50,  nullable = false)
     private String nome;
 
-    @Column(name = "telefone")
+    @Column(name = "telefone",  length = 11,  nullable = false)
     private String telefone;
 
-    @Column(name = "email")
+    @Column(name = "email",  length = 50,  nullable = false)
     private String email;
 
-    @Column(name = "senha")
+    @Column(name = "senha",   length = 50,  nullable = false)
     private String senha;
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                ", nome='" + nome + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                '}';
+    }
 
     public String getTelefone() {
         return telefone;
@@ -31,14 +33,6 @@ public class Usuario {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {

@@ -1,22 +1,21 @@
 package com.javaCortando.poo.model;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name = "cortes")
 public class Corte {
 
     @Id
-    @Column(name = "nome")
-    private String nome;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "nomeCliente")
+    private String nomeCliente;
 
     @Column(name = "data")
-    private LocalDateTime data;
+    private LocalDate data;
 
     @Column(name = "horario")
     private Float horario;
@@ -27,19 +26,30 @@ public class Corte {
     @Column(name = "cortesStatus")
     private boolean cortesStatus;
 
-    public String getNome() {
-        return nome;
+    @Override
+    public String toString() {
+        return "Corte{" +
+                "nomeCliente='" + nomeCliente + '\'' +
+                ", data=" + data +
+                ", horario=" + horario +
+                ", preco=" + preco +
+                ", cortesStatus=" + cortesStatus +
+                '}';
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getNomeCliente() {
+        return nomeCliente;
     }
 
-    public LocalDateTime getData() {
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(LocalDateTime data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

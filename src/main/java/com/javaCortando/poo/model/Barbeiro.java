@@ -1,24 +1,56 @@
 package com.javaCortando.poo.model;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
-@Table
-public class Barbeiro {
+@Table(name = "barbeiros")
+public class Barbeiro extends Usuario {
 
     @Id
-    @Column(name ="horarioInicial")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "horariosDeFuncionamento")
+    @ElementCollection
+    private List<Float> horariosDeFuncionamento;
+
+    @Column(name ="horarioInicial", length = 5,  nullable = false)
     private Float horarioInicial;
 
-
-    @Column(name ="horarioFinal")
+    @Column(name ="horarioFinal",  length = 5,  nullable = false)
     private Float horarioFinal;
 
-    @Column(name = "tempoPorCorte")
+    @Column(name = "tempoPorCorte",  length = 5,  nullable = false)
     private Float tempoPorCorte;
+
+    @Override
+    public String toString() {
+        return "Barbeiro{" +
+                "id=" + id +
+                ", horariosDeFuncionamento=" + horariosDeFuncionamento +
+                ", horarioInicial=" + horarioInicial +
+                ", horarioFinal=" + horarioFinal +
+                ", tempoPorCorte=" + tempoPorCorte +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Float> getHorariosDeFuncionamento() {
+        return horariosDeFuncionamento;
+    }
+
+    public void setHorariosDeFuncionamento(List<Float> horariosDeFuncionamento) {
+        this.horariosDeFuncionamento = horariosDeFuncionamento;
+    }
 
     public Float getHorarioInicial() {
         return horarioInicial;
