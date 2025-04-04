@@ -11,6 +11,8 @@ public class Corte {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "nomeCliente")
     private String nomeCliente;
 
