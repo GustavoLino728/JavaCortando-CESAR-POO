@@ -26,7 +26,7 @@ editem ou cancelem compromissos, além de gerenciar seus perfis.
 
 ## 🌐 Autores
 <a href="https://github.com/DavidaMendes">
- <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/166074227?v=4" width="100px;" alt="Victor"/>
+ <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/166074227?v=4" width="100px;" alt="Davi"/>
 </a>
 <a href="https://github.com/giulms">
  <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/163376922?v=4" width="100px;" alt="Giulliano"/>
@@ -38,10 +38,10 @@ editem ou cancelem compromissos, além de gerenciar seus perfis.
  <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/163598100?v=4" width="100px;" alt="Ítalo"/>
 </a>
 <a href="https://github.com/henryzera">
- <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/171767864?v=4" width="100px;" alt="Hailton"/>
+ <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/171767864?v=4" width="100px;" alt="Emanuel"/>
 </a>
 <a href="https://github.com/brittola">
- <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/99913525?v=4" width="100px;" alt="Vinícius"/>
+ <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/99913525?v=4" width="100px;" alt="Gabriel"/>
 </a>
 
 
