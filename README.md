@@ -24,6 +24,13 @@ editem ou cancelem compromissos, além de gerenciar seus perfis.
   <a href="https://trello.com/invite/b/67db31973176211a647f7134/ATTI70be2f70dd5fde3bf304746c8d65367a25D5ED40/trabalho-programacao-orientada-a-objeto-barbearia">Link histórias de usuário</a>
 </div>
 
+<h2>Entrega 2</h2>
+<div style="display: flex; flex-direction: column;">
+  <p>Entregas via commit das 2 historias, definidas no trello.</p>
+  <p>Diagrama de classes: </p>
+ 
+</div>
+
 ## 🌐 Autores
 <a href="https://github.com/DavidaMendes">
  <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/166074227?v=4" width="100px;" alt="Davi"/>
