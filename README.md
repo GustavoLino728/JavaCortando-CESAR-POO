@@ -28,7 +28,7 @@ editem ou cancelem compromissos, além de gerenciar seus perfis.
 <div style="display: flex; flex-direction: column;">
   <p>Entregas via commit das 2 historias, definidas no trello.</p>
   <p>Diagrama de classes: </p>
- 
+  <img style="border-radius: 50%" src="./diagrama.png" width="1000px;" alt="Davi"/>
 </div>
 
 ## 🌐 Autores
