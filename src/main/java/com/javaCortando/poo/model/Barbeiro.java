@@ -14,7 +14,7 @@ public class Barbeiro extends Usuario {
 
     @Column(name = "horariosDeFuncionamento")
     @ElementCollection
-    private List<Float> horariosDeFuncionamento;
+    private List<String> horariosDeFuncionamento;
 
     @Column(name ="horarioInicial", length = 5,  nullable = false)
     private Float horarioInicial;
@@ -44,11 +44,11 @@ public class Barbeiro extends Usuario {
         this.id = id;
     }
 
-    public List<Float> getHorariosDeFuncionamento() {
+    public List<String> getHorariosDeFuncionamento() {
         return horariosDeFuncionamento;
     }
 
-    public void setHorariosDeFuncionamento(List<Float> horariosDeFuncionamento) {
+    public void setHorariosDeFuncionamento(List<String> horariosDeFuncionamento) {
         this.horariosDeFuncionamento = horariosDeFuncionamento;
     }
 

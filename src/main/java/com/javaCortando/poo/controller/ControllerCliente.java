@@ -3,6 +3,7 @@ package com.javaCortando.poo.controller;
 import com.javaCortando.poo.model.Barbeiro;
 import com.javaCortando.poo.model.Cliente;
 import com.javaCortando.poo.model.Corte;
+import com.javaCortando.poo.service.ServiceBarbeiro;
 import com.javaCortando.poo.service.ServiceCliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class ControllerCliente {
     private ServiceCliente serviceCliente;
 
     @Autowired
-    private Barbeiro defaultBarbeiro;
+    private ServiceBarbeiro serviceBarbeiro;
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente){
@@ -44,8 +45,9 @@ public class ControllerCliente {
     }
 
     @GetMapping("/home")
-    public ResponseEntity<List<Float>> home(){
-        List<Float> horarios = serviceCliente.listarHorarioDisponiveis(defaultBarbeiro);
+    public ResponseEntity<List<String>> home(){
+        Barbeiro barbeiro = serviceBarbeiro.buscarBarbeiroPorId(1L);
+        List<String> horarios = serviceCliente.listarHorarioDisponiveis(barbeiro);
         return ResponseEntity.ok().body(horarios);
     }
 

@@ -24,8 +24,8 @@ public class ServiceCorte {
 //        //Ver os meus cortes
 //    }
 
-//    public List<Float> listarHorarioDisponiveis(){
-//        // Ver horarios disponiveis
-//    }
+    public List<Corte> getCortes(){
+        return repository.findAll();
+    }
 
 }

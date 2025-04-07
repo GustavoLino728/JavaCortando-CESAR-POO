@@ -25,6 +25,10 @@ public class ServiceCliente {
         repositoryCliente.save(cliente);
     }
 
+    public void removerCliente(Cliente cliente){
+        repositoryCliente.delete(cliente);
+    }
+
     public void salvarCorte(Corte corte){
         serviceCorte.criarCorte(corte);
     }
@@ -36,7 +40,7 @@ public class ServiceCliente {
 //    public List<Corte> listarMeusCortes(){}
 //    public void verPerfil(Cliente cliente){}
 
-    public List<Float> listarHorarioDisponiveis(Barbeiro barbeiro){
+    public List<String> listarHorarioDisponiveis(Barbeiro barbeiro){
         return listarHorarioDisponiveisComponent.listarHorarioDisponiveis(barbeiro);
     }
 

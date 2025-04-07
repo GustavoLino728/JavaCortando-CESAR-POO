@@ -9,11 +9,11 @@ import java.util.List;
 @Component
 public class ListarHorarioDisponiveisComponent {
 
-    public List<Float> pegarHorarios(Barbeiro barbeiro){
+    public List<String> pegarHorarios(Barbeiro barbeiro){
         return barbeiro.getHorariosDeFuncionamento();
     }
 
-    public List<Float> listarHorarioDisponiveis(Barbeiro barbeiro){
+    public List<String> listarHorarioDisponiveis(Barbeiro barbeiro){
         return pegarHorarios(barbeiro);
     }
 }
