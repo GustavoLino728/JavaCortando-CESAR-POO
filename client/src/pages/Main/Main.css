@@ -1,0 +1,134 @@
+.main {
+	padding: 20px;
+}
+
+.main__title {
+	font-size: 24px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.main__subtitle {
+	font-size: 16px;
+	color: #fff;
+}
+
+.main__cta {
+	margin-top: 20px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.main__available-dates {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: row;
+	gap: 18px;
+	max-width: 100%;
+	overflow-x: auto;
+	padding: 10px 0px;
+}
+
+.main__date-card {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	padding: 16px;
+	border: 1px solid #5B5B5B;
+	cursor: pointer;
+}
+
+.main__date-card__day {
+	font-size: 24px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.main__date-card__weekday {
+	font-size: 16px;
+	color: #fff;
+	text-transform: capitalize;
+}
+
+.main__date-card.selected {
+	background-color: #B8860B;
+}
+
+.main__date-card.selected .main__date-card__day {
+	color: #000;
+}
+
+.main__date-card.selected .main__date-card__weekday {
+	color: #000;
+}
+
+.main__available-shifts {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 10px;
+	width: 100%;
+}
+
+.main__available-shifts button {
+	width: 33%;
+	padding: 8px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	border: 1px solid #fff;
+	background-color: transparent;
+	border-radius: 8px;
+}
+
+.main__available-shifts button.selected {
+	color: #B8860B;
+	border: 1px solid #B8860B;
+}
+
+.main__available-hours {
+	margin-top: 32px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+}
+
+.main__available-hours button {
+	padding: 8px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	border: 1px solid #fff;
+	background-color: transparent;
+	border-radius: 8px;
+}
+
+.main__available-hours button.selected {
+	color: #B8860B;
+	border: 1px solid #B8860B;
+}
+
+.main__available-hours button.confirmed {
+	color: #3CDB7F;
+	border: 1px solid #3CDB7F;
+}
+
+.main__confirm-button {
+	margin-top: 32px;
+	padding: 16px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #000;
+	background-color: #B8860B;
+	border-radius: 8px;
+	border: none;
+	width: 100%;
+}
+
+.main__confirm-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}

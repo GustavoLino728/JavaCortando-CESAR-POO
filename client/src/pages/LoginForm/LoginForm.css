@@ -1,0 +1,80 @@
+.login-form-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	max-width: 600px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.login-form-container h1 {
+	color: #FFFFFF;
+	margin-bottom: 40px;
+	font-size: 24px;
+}
+
+form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	align-items: center;
+}
+
+.input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: 242px;
+}
+
+.input-group label {
+	color: #FFFFFF;
+	font-size: 16px;
+}
+
+.input-group input {
+	padding: 12px;
+	border: 1px solid #B8860B;
+	border-radius: 8px;
+	font-size: 16px;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+.botao-login {
+	background-color: #B8860B;
+	color: #000000;
+	border: none;
+	padding: 15px;
+	border-radius: 999px;
+	font-size: 16px;
+	cursor: pointer;
+	width: 242px;
+	transition: background-color 0.3s;
+}
+
+.botao-login:hover {
+	background-color: #A67C00;
+}
+
+.link-cadastro {
+	color: #FFFFFF;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.link-botao {
+	background: none;
+	border: none;
+	color: #B8860B;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 0;
+}
+
+.link-botao:hover {
+	text-decoration: underline;
+} 
