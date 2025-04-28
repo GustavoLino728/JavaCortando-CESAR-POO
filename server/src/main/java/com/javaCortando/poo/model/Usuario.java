@@ -1,12 +1,20 @@
 package com.javaCortando.poo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-@MappedSuperclass
+import java.util.List;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
 
-    @Column(name = "nome", length = 50,  nullable = false)
-    private String nome;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "username", length = 50,  nullable = false)
+    private String username;
 
     @Column(name = "telefone",  length = 11,  nullable = false)
     private String telefone;
@@ -14,16 +22,16 @@ public class Usuario {
     @Column(name = "email",  length = 50,  nullable = false)
     private String email;
 
-    @Column(name = "senha",   length = 50,  nullable = false)
-    private String senha;
+    @Column(name = "password",   length = 200,  nullable = false)
+    private String password;
 
     @Override
     public String toString() {
         return "Usuario{" +
-                ", nome='" + nome + '\'' +
+                ", nome='" + username + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
+                ", senha='" + password + '\'' +
                 '}';
     }
 
@@ -35,12 +43,12 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public String getNome() {
-        return nome;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setUsername(String nome) {
+        this.username = nome;
     }
 
     public String getEmail() {
@@ -51,11 +59,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String senha) {
+        this.password = senha;
     }
 }

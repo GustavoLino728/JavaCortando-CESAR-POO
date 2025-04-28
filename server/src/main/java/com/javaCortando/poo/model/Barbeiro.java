@@ -1,7 +1,13 @@
 package com.javaCortando.poo.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,9 +18,8 @@ public class Barbeiro extends Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "horariosDeFuncionamento")
     @ElementCollection
-    private List<String> horariosDeFuncionamento;
+    private List<Float> horariosDeFuncionamento;
 
     @Column(name ="horarioInicial", length = 5,  nullable = false)
     private Float horarioInicial;
@@ -25,6 +30,15 @@ public class Barbeiro extends Usuario {
     @Column(name = "tempoPorCorte",  length = 5,  nullable = false)
     private Float tempoPorCorte;
 
+    @OneToMany(mappedBy = "barbeiro")
+    @JsonIgnoreProperties("barbeiro")
+    private List<Corte> cortes;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "table_barbeiro_roles", joinColumns = @JoinColumn(name = "barbeiro_id"))
+    @Column(name = "role_id")
+    private List<String> roles = new ArrayList<>();
+
     @Override
     public String toString() {
         return "Barbeiro{" +
@@ -33,6 +47,8 @@ public class Barbeiro extends Usuario {
                 ", horarioInicial=" + horarioInicial +
                 ", horarioFinal=" + horarioFinal +
                 ", tempoPorCorte=" + tempoPorCorte +
+                ", cortes=" + getHorariosCortes() +
+                ", roles=" + roles +
                 '}';
     }
 
@@ -44,11 +60,11 @@ public class Barbeiro extends Usuario {
         this.id = id;
     }
 
-    public List<String> getHorariosDeFuncionamento() {
+    public List<Float> getHorariosDeFuncionamento() {
         return horariosDeFuncionamento;
     }
 
-    public void setHorariosDeFuncionamento(List<String> horariosDeFuncionamento) {
+    public void setHorariosDeFuncionamento(List<Float> horariosDeFuncionamento) {
         this.horariosDeFuncionamento = horariosDeFuncionamento;
     }
 
@@ -74,5 +90,31 @@ public class Barbeiro extends Usuario {
 
     public void setHorarioFinal(Float horarioFinal) {
         this.horarioFinal = horarioFinal;
+    }
+
+    public List<Corte> getCortes() {
+        return cortes;
+    }
+
+    public void setCortes(List<Corte> cortes) {
+        this.cortes = cortes;
+    }
+
+    public List<Float> getHorariosCortes(){
+        List<Float> horaCortes = new ArrayList<>();
+        if(cortes != null){
+            for(Corte corte : cortes){
+                horaCortes.add(corte.getHorario());
+            }
+        }
+        return horaCortes;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }

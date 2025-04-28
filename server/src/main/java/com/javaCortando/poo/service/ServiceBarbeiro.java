@@ -1,10 +1,12 @@
 package com.javaCortando.poo.service;
 
+import com.javaCortando.poo.dto.Login;
 import com.javaCortando.poo.model.Barbeiro;
 import com.javaCortando.poo.model.Cliente;
 import com.javaCortando.poo.model.Corte;
 import com.javaCortando.poo.repository.RepositoryBarbeiro;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,42 +17,56 @@ public class ServiceBarbeiro {
     @Autowired
     private RepositoryBarbeiro repositoryBarbeiro;
 
-    public void salvarBarbeiroInicial(){
-        Barbeiro barbeiroInicial = new Barbeiro();
-        barbeiroInicial.setNome("João");
-        barbeiroInicial.setTelefone("81940028922");
-        barbeiroInicial.setEmail("joao@barbearia.com");
-        barbeiroInicial.setSenha("senha123");
-        barbeiroInicial.setHorarioInicial(8.0f);
-        barbeiroInicial.setHorarioFinal(18.0f);
-        barbeiroInicial.setTempoPorCorte(0.5f);
-        atribuirHorarioFuncionamento(barbeiroInicial);
-        criarBarbeiro(barbeiroInicial);
-        System.out.println("Barbeiro Salvo com sucesso!");
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public Barbeiro findByUsername(Login login) {
+        if (login == null || login.getUsername() == null) {
+            return null;
+        }
+
+        // Adicione logs para depuração
+        System.out.println("Buscando barbeiro com username: " + login.getUsername());
+
+        Barbeiro barbeiro = repositoryBarbeiro.findByUsername(login.getUsername());
+
+        if (barbeiro != null) {
+            System.out.println("Barbeiro encontrado: " + barbeiro.getUsername());
+        } else {
+            System.out.println("Barbeiro não encontrado");
+        }
+
+        return barbeiro;
     }
 
-    public List<String> definirHorarioFuncionamento(Barbeiro barbeiro) {
-        List<String> horarios = new ArrayList<>();
+    private List<Float> definirHorarioFuncionamento(Barbeiro barbeiro) {
+        List<Float> horarios = new ArrayList<>();
 
         Float horarioAtual = barbeiro.getHorarioInicial();
         Float horarioFinal = barbeiro.getHorarioFinal();
         Float tempoPorCorte = barbeiro.getTempoPorCorte();
 
         while (horarioAtual < horarioFinal) {
-            int horas = horarioAtual.intValue();
-            int minutos = (int) ((horarioAtual - horas) * 60);
-            String horarioFormatado = String.format("%02d:%02d", horas, minutos);
-            horarios.add(horarioFormatado);
+            horarios.add(horarioAtual);
 
             horarioAtual += tempoPorCorte;
+
+            horarioAtual = Math.round(horarioAtual * 100) / 100.0f;
         }
 
         return horarios;
     }
 
-    private void atribuirHorarioFuncionamento(Barbeiro barbeiro) {
-        List<String> horarios = definirHorarioFuncionamento(barbeiro);
+    private String formatarHorario(Float horario) {
+        int horas = horario.intValue();
+        int minutos = (int) ((horario - horas) * 60);
+        return String.format("%02d:%02d", horas, minutos);
+    }
+
+    public void atribuirHorarioFuncionamento(Barbeiro barbeiro) {
+        List<Float> horarios = definirHorarioFuncionamento(barbeiro);
         barbeiro.setHorariosDeFuncionamento(horarios);
+        System.out.println("Horario atribuido com sucesso!");
     }
 
     public Barbeiro buscarBarbeiroPorId(Long id) {
@@ -58,7 +74,11 @@ public class ServiceBarbeiro {
                 .orElseThrow(() -> new RuntimeException("Barbeiro não encontrado"));
     }
 
-    private void criarBarbeiro(Barbeiro barbeiro){
+    public void criarBarbeiro(Barbeiro barbeiro) {
+        if (!barbeiro.getPassword().startsWith("$2a$")) {
+            String senhaCodificada = passwordEncoder.encode(barbeiro.getPassword());
+            barbeiro.setPassword(senhaCodificada);
+        }
         repositoryBarbeiro.save(barbeiro);
     }
 
@@ -66,7 +86,10 @@ public class ServiceBarbeiro {
         repositoryBarbeiro.delete(barbeiro);
     }
 
-//    public Corte cancelarCorte(){ serviceCorte.removerCorte;}
-//    public List<Corte> buscarCortePorBarbeiro(Barbeiro barbeiro){}
+    public List<Corte> cortesDoBarbeiro(){
+        Barbeiro barbeiro = buscarBarbeiroPorId(1L);
+        return barbeiro.getCortes();
+    }
 
+    //    public Corte cancelarCorte(){ serviceCorte.removerCorte;}
 }

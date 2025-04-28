@@ -1,5 +1,9 @@
 package com.javaCortando.poo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -7,14 +11,22 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "cortes")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Corte {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nomeCliente")
-    private String nomeCliente;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    @JsonIgnoreProperties("cortes")
+    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "barbeiro_id")
+    @JsonIgnoreProperties("cortes")
+    private Barbeiro barbeiro;
 
     @Column(name = "data")
     private LocalDate data;
@@ -31,20 +43,14 @@ public class Corte {
     @Override
     public String toString() {
         return "Corte{" +
-                "nomeCliente='" + nomeCliente + '\'' +
+                "id=" + id +
+                ", cliente=" + cliente +
+                ", barbeiro=" + barbeiro +
                 ", data=" + data +
                 ", horario=" + horario +
                 ", preco=" + preco +
                 ", cortesStatus=" + cortesStatus +
                 '}';
-    }
-
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
     }
 
     public LocalDate getData() {
@@ -77,5 +83,29 @@ public class Corte {
 
     public void setCortesStatus(boolean cortesStatus) {
         this.cortesStatus = cortesStatus;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Barbeiro getBarbeiro() {
+        return barbeiro;
+    }
+
+    public void setBarbeiro(Barbeiro barbeiro) {
+        this.barbeiro = barbeiro;
     }
 }

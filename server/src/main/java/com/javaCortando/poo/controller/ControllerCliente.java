@@ -1,15 +1,21 @@
 package com.javaCortando.poo.controller;
 
+import com.javaCortando.poo.dto.AgendamentoRequestDTO;
+import com.javaCortando.poo.dto.CorteDTO;
 import com.javaCortando.poo.model.Barbeiro;
 import com.javaCortando.poo.model.Cliente;
 import com.javaCortando.poo.model.Corte;
 import com.javaCortando.poo.service.ServiceBarbeiro;
 import com.javaCortando.poo.service.ServiceCliente;
+import com.javaCortando.poo.service.ServiceCorte;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cliente")
@@ -20,46 +26,46 @@ public class ControllerCliente {
     @Autowired
     private ServiceBarbeiro serviceBarbeiro;
 
-    @PostMapping("/cadastrar")
-    public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente){
-        serviceCliente.criarCliente(cliente);
-        return ResponseEntity.ok().body(cliente);
-    }
+    @Autowired
+    private ServiceCorte serviceCorte;
 
-//    @PostMapping("/login")
-//    public ResponseEntity<Cliente> loginCliente(@RequestBody Cliente cliente){
-//        login cliente
-//        return ResponseEntity.ok().body(cliente);
-//    }
+    @PostMapping(value = "/marcar", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CorteDTO> salvarCorte(@RequestBody AgendamentoRequestDTO request) {
+        if (request.getHorario() == null || request.getData() == null) {
+            return ResponseEntity.badRequest().build();
+        }
 
-    @PostMapping("/agendar")
-    public ResponseEntity<Corte> salvarCorte(@RequestBody Corte corte){
+        Corte corte = new Corte();
+        corte.setHorario(request.getHorario());
+        corte.setData(request.getData());
+
         serviceCliente.salvarCorte(corte);
-        return ResponseEntity.ok().body(corte);
+        return ResponseEntity.ok().body(new CorteDTO(corte));
     }
 
-    @PostMapping("/cancelar-corte")
-    public ResponseEntity<Corte> cancelarCorte(@RequestBody Corte corte){
+    @PostMapping("/desmarcar")
+    public ResponseEntity<CorteDTO> cancelarCorte(@RequestBody AgendamentoRequestDTO request) {
+        if (request.getHorario() == null || request.getData() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Corte corte = serviceCorte.findByDataAndHorario(request.getData(), request.getHorario());
         serviceCliente.cancelarCorte(corte);
-        return ResponseEntity.ok().body(corte);
+
+        return ResponseEntity.ok().body(new CorteDTO(corte));
     }
 
-    @GetMapping("/home")
-    public ResponseEntity<List<String>> home(){
-        Barbeiro barbeiro = serviceBarbeiro.buscarBarbeiroPorId(1L);
-        List<String> horarios = serviceCliente.listarHorarioDisponiveis(barbeiro);
-        return ResponseEntity.ok().body(horarios);
+    @GetMapping("/meus-cortes")
+    public ResponseEntity<List<CorteDTO>> listarMeusCortes() {
+        List<Corte> cortes = serviceCliente.listarCortesPorClienteAutenticado();
+
+        List<CorteDTO> cortesDTO = cortes.stream()
+                                         .map(CorteDTO::new)
+                                         .collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(cortesDTO);
     }
 
-//    public ResponseEntity<Corte> verCortesMarcados(@RequestBody Corte corte){
-//        // listar meus cortes
-//    }
 //    private void verPerfil(){}
-
-
-
-
-
-
 
 }
