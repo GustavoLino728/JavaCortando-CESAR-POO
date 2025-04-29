@@ -1,6 +1,8 @@
 package com.javaCortando.poo.security;
 
 import com.javaCortando.poo.security.jwt.JWTFilter;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +17,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@SecurityScheme(name = WebSecurityConfig.AUTHENTICATION_SCHEME, type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
 public class WebSecurityConfig {
+
+    public static final String AUTHENTICATION_SCHEME = "bearerAuth";
 
     @Autowired
     private SecurityDatabaseService securityService;
@@ -43,6 +48,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/home").hasAnyRole("USERS", "MANAGERS")
                         .requestMatchers("/cliente/agendar","/cliente/cancelar-corte").hasRole("USERS")
                         //.requestMatchers("/biblioteca/adicionar-livro").hasRole("MANAGERS")
+                        .requestMatchers("/v3/api-docs/**", "swagger-ui/**", "swagger-ui.html").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
