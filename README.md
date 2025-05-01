@@ -35,7 +35,7 @@ editem ou cancelem compromissos, além de gerenciar seus perfis.
 <div style="display: flex; flex-direction: column;">
   <p>Entregas via commit de 3 historias, testes, digramas e video screencast.</p>
   <p>Diagrama de classes: </p>
-  <img style="border-radius: 50%" src="" width="1000px;" alt="Davi"/>
+  <img style="border-radius: 50%" src="./DiagramaAtualizadoEntrega3.png" width="1000px;" alt="Davi"/>
 </div>
 
 ## 🌐 Autores
