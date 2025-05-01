@@ -31,6 +31,13 @@ editem ou cancelem compromissos, além de gerenciar seus perfis.
   <img style="border-radius: 50%" src="./diagrama.png" width="1000px;" alt="Davi"/>
 </div>
 
+<h2>Entrega 2</h2>
+<div style="display: flex; flex-direction: column;">
+  <p>Entregas via commit de 3 historias, testes, digramas e video screencast.</p>
+  <p>Diagrama de classes: </p>
+  <img style="border-radius: 50%" src="" width="1000px;" alt="Davi"/>
+</div>
+
 ## 🌐 Autores
 <a href="https://github.com/DavidaMendes">
  <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/166074227?v=4" width="100px;" alt="Davi"/>
