@@ -1,0 +1,42 @@
+services:
+  # Banco de Dados PostgreSQL
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER={usuario_do_banco}
+      - POSTGRES_PASSWORD={senha_do_banco}
+      - POSTGRES_DB={nome_banco}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U {usuario_do_banco} -d {nome_banco}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Backend Spring Boot
+  backend:
+    image: eclipse-temurin:17-jre
+    container_name: javacortando_backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/{nome_banco}
+      - SPRING_DATASOURCE_USERNAME={usuario_do_banco}
+      - SPRING_DATASOURCE_PASSWORD={senha_do_banco}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    volumes:
+      - ./server/target:/app
+    working_dir: /app
+    command: java -jar poo-0.0.1-SNAPSHOT.jar
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
