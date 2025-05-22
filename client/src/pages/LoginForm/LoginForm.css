@@ -1,69 +1,68 @@
 .login-form-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding: 20px;
-	max-width: 600px;
+	max-width: 400px;
 	margin: 0 auto;
-	margin-top: 20px;
+	padding: 2rem;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .login-form-container h1 {
-	color: #FFFFFF;
-	margin-bottom: 40px;
-	font-size: 24px;
-}
-
-form {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	align-items: center;
+	text-align: center;
+	color: #000;
+	margin-bottom: 2rem;
+	font-size: 1.5rem;
 }
 
 .input-group {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	width: 242px;
+	margin-bottom: 1rem;
 }
 
 .input-group label {
-	color: #FFFFFF;
-	font-size: 16px;
+	display: block;
+	margin-bottom: 0.5rem;
+	color: #000;
+	font-weight: 500;
 }
 
 .input-group input {
-	padding: 12px;
-	border: 1px solid #B8860B;
-	border-radius: 8px;
-	font-size: 16px;
-	background-color: #FFFFFF;
-	color: #000000;
+	width: 100%;
+	padding: 0.75rem;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 1rem;
+}
+
+.input-group input:focus {
+	outline: none;
+	border-color: #B8860B;
 }
 
 .botao-login {
+	width: 100%;
+	padding: 0.75rem;
 	background-color: #B8860B;
-	color: #000000;
+	color: #fff;
 	border: none;
-	padding: 15px;
-	border-radius: 999px;
-	font-size: 16px;
+	border-radius: 4px;
+	font-size: 1rem;
 	cursor: pointer;
-	width: 242px;
-	transition: background-color 0.3s;
+	transition: background-color 0.2s;
 }
 
 .botao-login:hover {
-	background-color: #A67C00;
+	background-color: #9b6f09;
+}
+
+.botao-login:disabled {
+	background-color: #ccc;
+	cursor: not-allowed;
 }
 
 .link-cadastro {
-	color: #FFFFFF;
-	margin-top: 20px;
 	text-align: center;
+	margin-top: 1rem;
+	color: #666;
 }
 
 .link-botao {
@@ -71,10 +70,25 @@ form {
 	border: none;
 	color: #B8860B;
 	cursor: pointer;
-	font-size: 16px;
+	font-weight: 500;
 	padding: 0;
 }
 
 .link-botao:hover {
 	text-decoration: underline;
+}
+
+.link-botao:disabled {
+	color: #ccc;
+	cursor: not-allowed;
+}
+
+.error-message {
+	background-color: #fee2e2;
+	border: 1px solid #ef4444;
+	color: #b91c1c;
+	padding: 0.75rem;
+	border-radius: 4px;
+	margin-bottom: 1rem;
+	text-align: center;
 } 
