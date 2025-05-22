@@ -122,6 +122,7 @@ public class ControllerCliente {
     @ApiResponse(responseCode = "400", description = "Algo de errado na requisição")
     @ApiResponse(responseCode = "500", description = "Erro no servidor")
     public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente){
+        cliente.getRoles().add("USERS");
         serviceCliente.criarCliente(cliente);
         return ResponseEntity.ok().body(cliente);
     }

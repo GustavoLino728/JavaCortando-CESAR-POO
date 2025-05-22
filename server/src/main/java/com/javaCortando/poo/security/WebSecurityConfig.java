@@ -43,7 +43,7 @@ public class WebSecurityConfig {
                 .cors(cors -> {}) // Habilita CORS sem configurações específicas
                 .addFilterAfter(new JWTFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login-cliente","/login-barbeiro", "/cadastro").permitAll()
+                        .requestMatchers("/", "/login-cliente","/login-barbeiro", "/cliente/cadastro").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/home").hasAnyRole("USERS", "MANAGERS")
                         .requestMatchers("/cliente/agendar","/cliente/cancelar-corte").hasRole("USERS")
