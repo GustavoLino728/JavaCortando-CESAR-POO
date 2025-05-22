@@ -68,9 +68,9 @@ const ClienteDashboard = () => {
 		}
 	};
 
-	const handleCancelar = async (data, horario) => {
+	const handleCancelar = async (id) => {
 		try {
-			await cancelarCorte(data, horario);
+			await cancelarCorte(id);
 			setDadosCarregados(false);
 			await carregarDados();
 			setError('');
@@ -172,7 +172,7 @@ const ClienteDashboard = () => {
 										</div>
 									</div>
 									<button
-										onClick={() => handleCancelar(corte.data, corte.horario)}
+										onClick={() => handleCancelar(corte.id)}
 										className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors duration-200"
 									>
 										Cancelar

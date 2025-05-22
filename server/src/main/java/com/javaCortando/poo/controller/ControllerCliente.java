@@ -1,26 +1,32 @@
 package com.javaCortando.poo.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.javaCortando.poo.dto.AgendamentoRequestDTO;
 import com.javaCortando.poo.dto.CorteDTO;
-import com.javaCortando.poo.model.Barbeiro;
 import com.javaCortando.poo.model.Cliente;
 import com.javaCortando.poo.model.Corte;
 import com.javaCortando.poo.security.WebSecurityConfig;
 import com.javaCortando.poo.service.ServiceBarbeiro;
 import com.javaCortando.poo.service.ServiceCliente;
 import com.javaCortando.poo.service.ServiceCorte;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cliente")
@@ -66,21 +72,19 @@ public class ControllerCliente {
      * @param request - dto que contem o horário e a data do corte
      * @return  ResponseEntity<CorteDTO> - dto do corte, informações mais limpas
      */
-    @DeleteMapping("/desmarcar")
-    @Operation(summary = "Desmarcar corte", description = "Deleta o corte apartir do dia e horário e reatribui esse horário a lista de horários livres do barbeiro")
+    @DeleteMapping("/desmarcar/{id}")
+    @Operation(summary = "Desmarcar corte", description = "Deleta o corte pelo ID e reatribui esse horário a lista de horários livres do barbeiro")
     @ApiResponse(responseCode = "200", description = "Corte desmarcado com sucesso")
     @ApiResponse(responseCode = "401", description = "Usuário sem autorização para acessar esse método")
     @ApiResponse(responseCode = "403", description = "Autorizado mas algo esta errado com o body da requisição")
     @ApiResponse(responseCode = "400", description = "Algo de errado na requisição")
     @ApiResponse(responseCode = "500", description = "Erro no servidor")
-    public ResponseEntity<CorteDTO> cancelarCorte(@RequestBody AgendamentoRequestDTO request) {
-        if (request.getHorario() == null || request.getData() == null) {
-            return ResponseEntity.badRequest().build();
+    public ResponseEntity<CorteDTO> cancelarCorte(@PathVariable Long id) {
+        Corte corte = serviceCorte.findById(id);
+        if (corte == null) {
+            return ResponseEntity.notFound().build();
         }
-
-        Corte corte = serviceCorte.findByDataAndHorario(request.getData(), request.getHorario());
         serviceCliente.cancelarCorte(corte);
-
         return ResponseEntity.ok().body(new CorteDTO(corte));
     }
 

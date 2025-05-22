@@ -37,8 +37,8 @@ export const agendarCorte = async (data, horario) => {
 	return response.data;
 };
 
-export const cancelarCorte = async (data, horario) => {
-	const response = await api.post('/cliente/desmarcar', { data, horario });
+export const cancelarCorte = async (id) => {
+	const response = await api.delete(`/cliente/desmarcar/${id}`);
 	return response.data;
 };
 

@@ -1,12 +1,13 @@
 package com.javaCortando.poo.service;
 
-import com.javaCortando.poo.model.Corte;
-import com.javaCortando.poo.repository.RepositoryCortes;
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.List;
+import com.javaCortando.poo.model.Corte;
+import com.javaCortando.poo.repository.RepositoryCortes;
 
 @Service
 public class ServiceCorte {
@@ -31,6 +32,11 @@ public class ServiceCorte {
 
     public List<Corte> getCortes(){
         return repository.findAll();
+    }
+
+    public Corte findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Corte não encontrado"));
     }
 
 }
