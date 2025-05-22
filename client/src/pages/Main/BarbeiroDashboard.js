@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { listarCortesBarbeiro } from '../../services/api';
 import moment from 'moment';
@@ -11,23 +11,27 @@ const BarbeiroDashboard = () => {
 	const [cortes, setCortes] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
+	const [dadosCarregados, setDadosCarregados] = useState(false);
 
-	useEffect(() => {
-		carregarCortes();
-	}, []);
+	const carregarCortes = useCallback(async () => {
+		if (dadosCarregados) return;
 
-	const carregarCortes = async () => {
 		try {
 			setLoading(true);
 			const response = await listarCortesBarbeiro();
 			setCortes(response);
+			setDadosCarregados(true);
 		} catch (error) {
 			setError('Erro ao carregar cortes');
 			console.error(error);
 		} finally {
 			setLoading(false);
 		}
-	};
+	}, [dadosCarregados]);
+
+	useEffect(() => {
+		carregarCortes();
+	}, [carregarCortes]);
 
 	if (loading) {
 		return (
@@ -81,11 +85,11 @@ const BarbeiroDashboard = () => {
 										</div>
 										<div className="flex items-center space-x-2">
 											<span className="text-[#B8860B] font-semibold">Data:</span>
-											<span className="text-gray-700">{moment(corte.data).format('DD/MM/YYYY')}</span>
+											<span className="text-gray-700">{corte.data}</span>
 										</div>
 										<div className="flex items-center space-x-2">
 											<span className="text-[#B8860B] font-semibold">Horário:</span>
-											<span className="text-gray-700">{corte.horario}:00</span>
+											<span className="text-gray-700">{corte.horario}</span>
 										</div>
 									</div>
 									<div className="bg-[#B8860B] text-white px-3 py-1 rounded-full text-sm">

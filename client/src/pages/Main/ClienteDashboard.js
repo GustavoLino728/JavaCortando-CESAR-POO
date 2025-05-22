@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { 
 	listarHorariosDisponiveis, 
@@ -19,12 +19,17 @@ const ClienteDashboard = () => {
 	const [horarioSelecionado, setHorarioSelecionado] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
+	const [dadosCarregados, setDadosCarregados] = useState(false);
 
-	useEffect(() => {
-		carregarDados();
-	}, []);
+	const formatarHorario = (horarioFloat) => {
+		const horas = Math.floor(horarioFloat);
+		const minutos = Math.round((horarioFloat - horas) * 60);
+		return `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
+	};
 
-	const carregarDados = async () => {
+	const carregarDados = useCallback(async () => {
+		if (dadosCarregados) return;
+		
 		try {
 			setLoading(true);
 			const [horarios, cortes] = await Promise.all([
@@ -33,13 +38,18 @@ const ClienteDashboard = () => {
 			]);
 			setHorariosDisponiveis(horarios);
 			setMeusCortes(cortes);
+			setDadosCarregados(true);
 		} catch (error) {
 			setError('Erro ao carregar dados');
 			console.error(error);
 		} finally {
 			setLoading(false);
 		}
-	};
+	}, [dadosCarregados]);
+
+	useEffect(() => {
+		carregarDados();
+	}, [carregarDados]);
 
 	const handleAgendar = async () => {
 		try {
@@ -49,6 +59,7 @@ const ClienteDashboard = () => {
 			}
 
 			await agendarCorte(dataSelecionada, horarioSelecionado);
+			setDadosCarregados(false);
 			await carregarDados();
 			setError('');
 		} catch (error) {
@@ -60,6 +71,7 @@ const ClienteDashboard = () => {
 	const handleCancelar = async (data, horario) => {
 		try {
 			await cancelarCorte(data, horario);
+			setDadosCarregados(false);
 			await carregarDados();
 			setError('');
 		} catch (error) {
@@ -121,7 +133,7 @@ const ClienteDashboard = () => {
 							<option value="">Selecione um horário</option>
 							{horariosDisponiveis.map((horario) => (
 								<option key={horario} value={horario}>
-									{horario}:00
+									{formatarHorario(horario)}
 								</option>
 							))}
 						</select>
@@ -152,11 +164,11 @@ const ClienteDashboard = () => {
 									<div className="space-y-2">
 										<div className="flex items-center space-x-2">
 											<span className="text-[#B8860B] font-semibold">Data:</span>
-											<span className="text-gray-700">{moment(corte.data).format('DD/MM/YYYY')}</span>
+											<span className="text-gray-700">{corte.data}</span>
 										</div>
 										<div className="flex items-center space-x-2">
 											<span className="text-[#B8860B] font-semibold">Horário:</span>
-											<span className="text-gray-700">{corte.horario}:00</span>
+											<span className="text-gray-700">{corte.horario}</span>
 										</div>
 									</div>
 									<button
