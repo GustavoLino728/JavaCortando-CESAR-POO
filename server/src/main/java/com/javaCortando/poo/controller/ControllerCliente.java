@@ -66,7 +66,7 @@ public class ControllerCliente {
      * @param request - dto que contem o horário e a data do corte
      * @return  ResponseEntity<CorteDTO> - dto do corte, informações mais limpas
      */
-    @PostMapping("/desmarcar")
+    @DeleteMapping("/desmarcar")
     @Operation(summary = "Desmarcar corte", description = "Deleta o corte apartir do dia e horário e reatribui esse horário a lista de horários livres do barbeiro")
     @ApiResponse(responseCode = "200", description = "Corte desmarcado com sucesso")
     @ApiResponse(responseCode = "401", description = "Usuário sem autorização para acessar esse método")
