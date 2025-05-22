@@ -80,7 +80,7 @@ function Cadastro() {
 
 			<form onSubmit={handleSubmit}>
 				<div className="input-group">
-					<label htmlFor="username">Nome</label>
+					<label htmlFor="username">Usuário</label>
 					<input
 						type="text"
 						id="username"
