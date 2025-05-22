@@ -8,7 +8,7 @@ function LoginForm() {
 	const navigate = useNavigate();
 	const { signInCliente, signInBarbeiro } = useAuth();
 	const tipoUsuario = location.state?.tipo || 'cliente';
-	const [email, setEmail] = useState('');
+	const [username, setUsername] = useState('');
 	const [senha, setSenha] = useState('');
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -20,8 +20,8 @@ function LoginForm() {
 
 		try {
 			const success = tipoUsuario === 'cliente'
-				? await signInCliente(email, senha)
-				: await signInBarbeiro(email, senha);
+				? await signInCliente(username, senha)
+				: await signInBarbeiro(username, senha);
 
 			if (success) {
 				navigate(tipoUsuario === 'cliente' ? '/' : '/barbeiro');
@@ -48,12 +48,12 @@ function LoginForm() {
 
 			<form onSubmit={handleSubmit}>
 				<div className="input-group">
-					<label htmlFor="email">E-mail</label>
+					<label htmlFor="username">Usuário</label>
 					<input
-						type="email"
-						id="email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						type="text"
+						id="username"
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
 						required
 						disabled={loading}
 					/>
