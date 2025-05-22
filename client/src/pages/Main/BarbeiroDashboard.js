@@ -80,15 +80,15 @@ const BarbeiroDashboard = () => {
 								<div className="flex justify-between items-start">
 									<div className="space-y-2">
 										<div className="flex items-center space-x-2">
-											<span className="text-[#B8860B] font-semibold">Cliente:</span>
-											<span className="text-gray-700">{corte.cliente?.username}</span>
+											<span className="text-[#B8860B] font-semibold">Cliente: </span>
+											<span className="text-gray-700">{corte.nomeCliente}</span>
 										</div>
 										<div className="flex items-center space-x-2">
-											<span className="text-[#B8860B] font-semibold">Data:</span>
+											<span className="text-[#B8860B] font-semibold"><strong>Data: </strong></span>
 											<span className="text-gray-700">{corte.data}</span>
 										</div>
 										<div className="flex items-center space-x-2">
-											<span className="text-[#B8860B] font-semibold">Horário:</span>
+											<span className="text-[#B8860B] font-semibold">Horário: </span>
 											<span className="text-gray-700">{corte.horario}</span>
 										</div>
 									</div>
