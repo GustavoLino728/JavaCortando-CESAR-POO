@@ -78,14 +78,18 @@ function LoginForm() {
 				</button>
 			</form>
 			<p className="link-cadastro">
-				Não tem uma conta?{' '}
-				<button
-					className="link-botao"
-					onClick={() => navigate('/cadastro')}
-					disabled={loading}
-				>
-					Cadastre-se
-				</button>
+				{tipoUsuario === 'cliente' && (
+					<>
+						Não tem uma conta?{' '}
+						<button
+							className="link-botao"
+							onClick={() => navigate('/cadastro')}
+							disabled={loading}
+						>
+							Cadastre-se
+						</button>
+					</>
+				)}
 			</p>
 		</div>
 	);
