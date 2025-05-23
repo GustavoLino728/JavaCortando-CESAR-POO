@@ -1,108 +1,121 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import { listarCortesBarbeiro } from '../../services/api';
-import moment from 'moment';
-import 'moment/locale/pt-br';
+"use client"
 
-moment.locale('pt-br');
+import { useState, useEffect, useCallback } from "react"
+import { useAuth } from "../../contexts/AuthContext"
+import { listarCortesBarbeiro } from "../../services/api"
+import moment from "moment"
+import "moment/locale/pt-br"
+import "./BarbeiroDashboard.css"
+import logoImg from "../../assets/logo-javacortando-cortada-removebg-preview.png"
+
+moment.locale("pt-br")
 
 const BarbeiroDashboard = () => {
-	const { user, signOut } = useAuth();
-	const [cortes, setCortes] = useState([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState('');
-	const [dadosCarregados, setDadosCarregados] = useState(false);
+  const { user, signOut } = useAuth()
+  const [cortes, setCortes] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState("")
+  const [dadosCarregados, setDadosCarregados] = useState(false)
 
-	const carregarCortes = useCallback(async () => {
-		if (dadosCarregados) return;
+  const carregarCortes = useCallback(async () => {
+    if (dadosCarregados) return
 
-		try {
-			setLoading(true);
-			const response = await listarCortesBarbeiro();
-			setCortes(response);
-			setDadosCarregados(true);
-		} catch (error) {
-			setError('Erro ao carregar cortes');
-			console.error(error);
-		} finally {
-			setLoading(false);
-		}
-	}, [dadosCarregados]);
+    try {
+      setLoading(true)
+      const response = await listarCortesBarbeiro()
+      setCortes(response)
+      setDadosCarregados(true)
+    } catch (error) {
+      setError("Erro ao carregar cortes")
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
+  }, [dadosCarregados])
 
-	useEffect(() => {
-		carregarCortes();
-	}, [carregarCortes]);
+  useEffect(() => {
+    carregarCortes()
+  }, [carregarCortes])
 
-	if (loading) {
-		return (
-			<div className="flex justify-center items-center h-screen">
-				<div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#B8860B]"></div>
-			</div>
-		);
-	}
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+      </div>
+    )
+  }
 
-	return (
-		<div className="max-w-[600px] mx-auto p-4 min-h-screen bg-gray-50">
-			<div className="bg-white rounded-lg shadow-md p-6 mb-6">
-				<div className="flex justify-between items-center">
-					<div>
-						<h1 className="text-2xl font-bold text-gray-800">Olá, {user?.username}</h1>
-						<p className="text-gray-600">Bem-vindo ao seu painel</p>
-					</div>
-					<button
-						onClick={signOut}
-						className="bg-[#B8860B] hover:bg-[#9B7209] text-white px-6 py-2 rounded-lg transition-colors duration-200"
-					>
-						Sair
-					</button>
-				</div>
-			</div>
+  return (
+    <div className="barbeiro-dashboard-page">
+      {}
+      <div className="background-overlay"></div>
+      <div className="gradient-overlay"></div>
 
-			{error && (
-				<div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded mb-6">
-					<p>{error}</p>
-				</div>
-			)}
+      <div className="barbeiro-dashboard-content">
+        {}
+        <div className="logo-container">
+          <img
+            src={logoImg || "/placeholder.svg"}
+            alt="JavaCortando Logo"
+            className="logo"
+            onError={(e) => {
+              e.target.onerror = null
+              e.target.src = "/placeholder.svg"
+            }}
+          />
+        </div>
 
-			<div className="bg-white rounded-lg shadow-md p-6">
-				<h2 className="text-xl font-semibold text-gray-800 mb-6">Cortes Agendados</h2>
-				{cortes.length === 0 ? (
-					<div className="text-center py-8">
-						<p className="text-gray-500">Não há cortes agendados</p>
-					</div>
-				) : (
-					<div className="grid gap-4">
-						{cortes.map((corte) => (
-							<div
-								key={`${corte.data}-${corte.horario}`}
-								className="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:border-[#B8860B] transition-colors duration-200"
-							>
-								<div className="flex justify-between items-start">
-									<div className="space-y-2">
-										<div className="flex items-center space-x-2">
-											<span className="text-[#B8860B] font-semibold">Cliente: </span>
-											<span className="text-gray-700">{corte.nomeCliente}</span>
-										</div>
-										<div className="flex items-center space-x-2">
-											<span className="text-[#B8860B] font-semibold"><strong>Data: </strong></span>
-											<span className="text-gray-700">{corte.data}</span>
-										</div>
-										<div className="flex items-center space-x-2">
-											<span className="text-[#B8860B] font-semibold">Horário: </span>
-											<span className="text-gray-700">{corte.horario}</span>
-										</div>
-									</div>
-									<div className="bg-[#B8860B] text-white px-3 py-1 rounded-full text-sm">
-										Agendado
-									</div>
-								</div>
-							</div>
-						))}
-					</div>
-				)}
-			</div>
-		</div>
-	);
-};
+        {}
+        <div className="barbeiro-dashboard-header">
+          <div className="user-info">
+            <h1>Olá, {user?.username}</h1>
+            <p>Bem-vindo ao seu painel</p>
+          </div>
+          <button onClick={signOut} className="logout-button">
+            Sair
+          </button>
+        </div>
 
-export default BarbeiroDashboard;
+        {}
+        {error && <div className="error-message">{error}</div>}
+
+        {}
+        <div className="barbeiro-dashboard-card">
+          <h2>Cortes Agendados</h2>
+          {cortes.length === 0 ? (
+            <div className="empty-state">
+              <p>Não há cortes agendados</p>
+            </div>
+          ) : (
+            <div className="cortes-list">
+              {cortes.map((corte) => (
+                <div key={`${corte.data}-${corte.horario}`} className="corte-item">
+                  <div className="corte-info">
+                    <div className="corte-detail">
+                      <span className="label">Cliente:</span>
+                      <span className="value">{corte.nomeCliente}</span>
+                    </div>
+                    <div className="corte-detail">
+                      <span className="label">Data:</span>
+                      <span className="value">{corte.data}</span>
+                    </div>
+                    <div className="corte-detail">
+                      <span className="label">Horário:</span>
+                      <span className="value">{corte.horario}</span>
+                    </div>
+                  </div>
+                  <div className="status-badge">Agendado</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {}
+        <div className="footer">© {new Date().getFullYear()} JavaCortando • Todos os direitos reservados</div>
+      </div>
+    </div>
+  )
+}
+
+export default BarbeiroDashboard

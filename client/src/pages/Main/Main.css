@@ -1,134 +1,291 @@
-.main {
-	padding: 20px;
+.main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #000000;
+  position: relative;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("../../assets/background.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+  z-index: 2;
+}
+
+.main-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.logo-container {
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  max-width: 160px;
+  height: auto;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
+  transition: transform 0.5s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.main-card {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid #333;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+}
+
+.main__content {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .main__title {
-	font-size: 24px;
-	font-weight: bold;
-	color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
 }
 
 .main__subtitle {
-	font-size: 16px;
-	color: #fff;
+  font-size: 16px;
+  color: #ddd;
+  line-height: 1.5;
 }
 
 .main__cta {
-	margin-top: 20px;
-	font-size: 20px;
-	font-weight: bold;
-	color: #fff;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
 }
 
 .main__available-dates {
-	margin-top: 20px;
-	display: flex;
-	flex-direction: row;
-	gap: 18px;
-	max-width: 100%;
-	overflow-x: auto;
-	padding: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 10px 0;
+  margin-bottom: 20px;
 }
 
 .main__date-card {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	align-items: center;
-	padding: 16px;
-	border: 1px solid #5B5B5B;
-	cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #444;
+  border-radius: 12px;
+  cursor: pointer;
+  min-width: 70px;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.main__date-card:hover {
+  border-color: #b8860b;
+  transform: translateY(-2px);
 }
 
 .main__date-card__day {
-	font-size: 24px;
-	font-weight: bold;
-	color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
 }
 
 .main__date-card__weekday {
-	font-size: 16px;
-	color: #fff;
-	text-transform: capitalize;
+  font-size: 14px;
+  color: #ddd;
+  text-transform: capitalize;
 }
 
 .main__date-card.selected {
-	background-color: #B8860B;
+  background-color: #b8860b;
+  border-color: #b8860b;
+  transform: translateY(-2px);
 }
 
 .main__date-card.selected .main__date-card__day {
-	color: #000;
+  color: #000;
 }
 
 .main__date-card.selected .main__date-card__weekday {
-	color: #000;
+  color: #000;
 }
 
 .main__available-shifts {
-	margin-top: 20px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	gap: 10px;
-	width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
-.main__available-shifts button {
-	width: 33%;
-	padding: 8px;
-	font-size: 16px;
-	font-weight: bold;
-	color: #fff;
-	border: 1px solid #fff;
-	background-color: transparent;
-	border-radius: 8px;
+.shift-button {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  border: 1px solid #444;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.main__available-shifts button.selected {
-	color: #B8860B;
-	border: 1px solid #B8860B;
+.shift-button:hover {
+  border-color: #b8860b;
+  color: #b8860b;
+}
+
+.shift-button.selected {
+  color: #000;
+  background-color: #b8860b;
+  border-color: #b8860b;
 }
 
 .main__available-hours {
-	margin-top: 32px;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 30px;
 }
 
-.main__available-hours button {
-	padding: 8px;
-	font-size: 16px;
-	font-weight: bold;
-	color: #fff;
-	border: 1px solid #fff;
-	background-color: transparent;
-	border-radius: 8px;
+.hour-button {
+  padding: 12px 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  border: 1px solid #444;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.main__available-hours button.selected {
-	color: #B8860B;
-	border: 1px solid #B8860B;
+.hour-button:hover {
+  border-color: #b8860b;
+  color: #b8860b;
 }
 
-.main__available-hours button.confirmed {
-	color: #3CDB7F;
-	border: 1px solid #3CDB7F;
+.hour-button.selected {
+  color: #000;
+  background-color: #b8860b;
+  border-color: #b8860b;
+}
+
+.hour-button.confirmed {
+  color: #000;
+  background-color: #22c55e;
+  border-color: #22c55e;
+  cursor: not-allowed;
 }
 
 .main__confirm-button {
-	margin-top: 32px;
-	padding: 16px;
-	font-size: 16px;
-	font-weight: bold;
-	color: #000;
-	background-color: #B8860B;
-	border-radius: 8px;
-	border: none;
-	width: 100%;
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  background-color: #b8860b;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main__confirm-button:hover {
+  background-color: #daa520;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(218, 165, 32, 0.3);
 }
 
 .main__confirm-button:disabled {
-	opacity: 0.5;
-	cursor: not-allowed;
+  background-color: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.footer {
+  margin-top: 32px;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .main__available-hours {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .main__title {
+    font-size: 24px;
+  }
+
+  .main__cta {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-card {
+    padding: 20px;
+  }
+
+  .main__available-dates {
+    gap: 8px;
+  }
+
+  .main__date-card {
+    padding: 12px 16px;
+    min-width: 60px;
+  }
+
+  .shift-button {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
 }
