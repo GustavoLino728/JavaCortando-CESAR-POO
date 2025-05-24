@@ -40,6 +40,11 @@ editem ou cancelem compromissos, além de gerenciar seus perfis.
  <a href="https://youtu.be/7tUJrM01ImM">Link do vídeo</a>
 </div>
 
+<h2>🚀 Deploy do projeto</h2>
+<div style="display: flex; flex-direction: column;">
+ <a href="https://front-projeto-poo.onrender.com/">Projeto rodando na plataforma render</a>
+</div>
+
 ## 🌐 Autores
 <a href="https://github.com/DavidaMendes">
  <img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/166074227?v=4" width="100px;" alt="Davi"/>
