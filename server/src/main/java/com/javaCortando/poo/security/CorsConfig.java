@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // permite todas as rotas
-                        .allowedOrigins("*") // permite todas as origens
+                        .allowedOrigins("https://front-projeto-poo.onrender.com") // permite todas as origens
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true); // se estiver usando cookies/autenticação
