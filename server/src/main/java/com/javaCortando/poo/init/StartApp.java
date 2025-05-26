@@ -1,18 +1,17 @@
 package com.javaCortando.poo.init;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.javaCortando.poo.component.RemoverCortesAntigos;
 import com.javaCortando.poo.model.Barbeiro;
 import com.javaCortando.poo.model.Cliente;
 import com.javaCortando.poo.repository.RepositoryBarbeiro;
 import com.javaCortando.poo.repository.RepositoryCliente;
-import com.javaCortando.poo.security.ConfigEncoder;
 import com.javaCortando.poo.service.ServiceBarbeiro;
 import com.javaCortando.poo.service.ServiceCliente;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class StartApp implements CommandLineRunner {
@@ -45,7 +44,7 @@ public class StartApp implements CommandLineRunner {
             barbeiroInicial.setUsername("barbeiro");
             barbeiroInicial.setTelefone("81940028922");
             barbeiroInicial.setEmail("joao@barbearia.com");
-            barbeiroInicial.setPassword(passwordEncoder.encode("123"));
+            barbeiroInicial.setPassword("123");
             barbeiroInicial.setHorarioInicial(8.0f);
             barbeiroInicial.setHorarioFinal(18.0f);
             barbeiroInicial.setTempoPorCorte(0.5f);
