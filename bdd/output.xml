@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-05-26T19:27:56.846983" rpa="false" schemaversion="5">
+<suite id="s1" name="Cases" source="c:\Users\giulliano.muniz\Desktop\Teste POO\test\cases.robot">
+<test id="s1-t1" name="Agendar corte de cabelo" line="20">
+<kw name="Dado que o usuario entra no site" owner="autenticacao_page">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-26T19:27:57.271252" level="INFO">Opening browser 'Chrome' to base url 'https://front-projeto-poo.onrender.com'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-26T19:27:57.270510" elapsed="4.421791"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-26T19:28:01.692809" elapsed="0.917846"/>
+</kw>
+<status status="PASS" start="2025-05-26T19:27:57.269334" elapsed="5.341631"/>
+</kw>
+<kw name="E clica no botão &quot;Como Cliente&quot;" owner="autenticacao_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-26T19:28:02.613287" level="INFO">Clicking element 'xpath=//button[text()='Como Cliente']'.</msg>
+<arg>${BTN_CLIENTE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-26T19:28:02.612511" elapsed="0.123048"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-05-26T19:28:04.736743" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-05-26T19:28:02.735972" elapsed="2.001478"/>
+</kw>
+<status status="PASS" start="2025-05-26T19:28:02.611815" elapsed="2.125992"/>
+</kw>
+<kw name="E o cliente fornece credenciais válidas" owner="autenticacao_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-26T19:28:04.741131" level="INFO">Typing text 'cliente' into text field 'id=username'.</msg>
+<arg>${INPUT_USUARIO}</arg>
+<arg>${USUARIO_CLIENTE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-26T19:28:04.740079" elapsed="0.171783"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-05-26T19:28:04.913065" level="INFO">Typing password into text field 'id=senha'.</msg>
+<msg time="2025-05-26T19:28:04.953636" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>${INPUT_SENHA}</arg>
+<arg>${SENHA_CLIENTE}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-26T19:28:04.912299" elapsed="0.107756"/>
+</kw>
+<status status="PASS" start="2025-05-26T19:28:04.739373" elapsed="0.281017"/>
+</kw>
+<kw name="E clica no botão &quot;Entrar&quot;" owner="autenticacao_page">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-26T19:28:05.022061" level="INFO">Clicking element 'xpath=//button[text()='Entrar']'.</msg>
+<arg>${BOTAO_ENTRAR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-26T19:28:05.021651" elapsed="0.079513"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-05-26T19:28:35.102672" level="INFO">Slept 30 seconds.</msg>
+<arg>30s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-05-26T19:28:05.101615" elapsed="30.001920"/>
+</kw>
+<status status="PASS" start="2025-05-26T19:28:05.021070" elapsed="30.082800"/>
+</kw>
+<kw name="Quando preencho o campo agendar" owner="autenticacao_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-26T19:28:35.107322" level="INFO">Typing text '15/Evaluate random.randint(0, 9)/2025' into text field 'xpath=//input[@placeholder='DD/MM/AAAA']'.</msg>
+<msg time="2025-05-26T19:28:35.376535" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-05-26T19:28:35.377448" level="FAIL">Element with locator 'xpath=//input[@placeholder='DD/MM/AAAA']' not found.</msg>
+<arg>${CAMPO_DATA_PLACEHOLDER}</arg>
+<arg>15/${NUMERO_ALEATORIO}/2025</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="FAIL" start="2025-05-26T19:28:35.106286" elapsed="0.285140">Element with locator 'xpath=//input[@placeholder='DD/MM/AAAA']' not found.</status>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${DROPDOWN_HORARIO}</arg>
+<arg>${HORARIO}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-05-26T19:28:35.392447" elapsed="0.000362"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${BTN_AGENDAR_CORTES}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-05-26T19:28:35.393263" elapsed="0.000221"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2025-05-26T19:28:35.393850" elapsed="0.000201"/>
+</kw>
+<status status="FAIL" start="2025-05-26T19:28:35.105218" elapsed="0.289237">Element with locator 'xpath=//input[@placeholder='DD/MM/AAAA']' not found.</status>
+</kw>
+<kw name="E clico no botão &quot;Agendar Cortes&quot;" owner="autenticacao_page">
+<status status="NOT RUN" start="2025-05-26T19:28:35.395818" elapsed="0.000305"/>
+</kw>
+<kw name="Então o usuario é redirecionado para a página da conta" owner="autenticacao_page">
+<status status="NOT RUN" start="2025-05-26T19:28:35.397216" elapsed="0.000292"/>
+</kw>
+<status status="FAIL" start="2025-05-26T19:27:57.268179" elapsed="38.130544">Element with locator 'xpath=//input[@placeholder='DD/MM/AAAA']' not found.</status>
+</test>
+<doc>Suite de testes</doc>
+<status status="FAIL" start="2025-05-26T19:27:56.865520" elapsed="38.537306"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Cases" id="s1" pass="0" fail="1" skip="0">Cases</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
