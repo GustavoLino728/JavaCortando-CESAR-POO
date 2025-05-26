@@ -6,6 +6,7 @@ import com.javaCortando.poo.model.Cliente;
 import com.javaCortando.poo.model.Corte;
 import com.javaCortando.poo.repository.RepositoryBarbeiro;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -69,9 +70,14 @@ public class ServiceBarbeiro {
         System.out.println("Horario atribuido com sucesso!");
     }
 
-    public Barbeiro buscarBarbeiroPorId(Long id) {
-        return repositoryBarbeiro.findById(id)
-                .orElseThrow(() -> new RuntimeException("Barbeiro não encontrado"));
+    public Barbeiro buscarBarbeiroPorUsername(String username) {
+        Barbeiro barbeiro = repositoryBarbeiro.findByUsername(username);
+
+        if (barbeiro == null) {
+            throw new UsernameNotFoundException("Barbeiro com username '" + username + "' não encontrado.");
+        }
+
+        return barbeiro;
     }
 
     public void criarBarbeiro(Barbeiro barbeiro) {
@@ -87,7 +93,7 @@ public class ServiceBarbeiro {
     }
 
     public List<Corte> cortesDoBarbeiro(){
-        Barbeiro barbeiro = buscarBarbeiroPorId(1L);
+        Barbeiro barbeiro = buscarBarbeiroPorUsername("barbeiro");
         return barbeiro.getCortes();
     }
 

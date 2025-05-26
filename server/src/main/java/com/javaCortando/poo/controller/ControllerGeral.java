@@ -38,7 +38,7 @@ public class ControllerGeral {
     @ApiResponse(responseCode = "401", description = "Usuário sem autorização para acessar esse método")
     @ApiResponse(responseCode = "500", description = "Erro no servidor")
     public ResponseEntity<List<Float>> home(){
-        Barbeiro barbeiro = serviceBarbeiro.buscarBarbeiroPorId(1L);
+        Barbeiro barbeiro = serviceBarbeiro.buscarBarbeiroPorUsername("barbeiro");
         List<Float> horarios = serviceCliente.listarHorarioDisponiveis(barbeiro);
         return ResponseEntity.ok().body(horarios);
     }
