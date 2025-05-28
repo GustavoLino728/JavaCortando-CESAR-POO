@@ -16,6 +16,15 @@ editem ou cancelem compromissos, além de gerenciar seus perfis.
  </a>
 </div>
 
+<h2>🚀 Deploy do projeto</h2>
+<div style="display: flex; flex-direction: column;">
+ <a href="https://front-projeto-poo.onrender.com/">Projeto rodando na plataforma render</a>
+</div>
+
+<h2>🧑🏻‍💻 Documentação de Como Rodar a Aplicação</h2>
+<div style="display: flex; flex-direction: column;">
+ 
+</div>
 
 <h1>📃 Entregas</h1>
 <h2>Entrega 1</h2>
@@ -28,21 +37,26 @@ editem ou cancelem compromissos, além de gerenciar seus perfis.
 <div style="display: flex; flex-direction: column;">
   <p>Entregas via commit das 2 historias, definidas no trello.</p>
   <p>Diagrama de classes: </p>
-  <img style="border-radius: 50%" src="./diagrama.png" width="1000px;" alt="Davi"/>
+  <img style="border-radius: 50%" src="diagramas/DiagramaEntrega2.png" width="1000px;" alt="Diagrama de Classes"/>
 </div>
 
-<h2>Entrega 2</h2>
+<h2>Entrega 3</h2>
 <div style="display: flex; flex-direction: column;">
   <p>Entregas via commit de 3 historias, testes, digramas e video screencast.</p>
   <p>Diagrama de classes: </p>
-  <img style="border-radius: 50%" src="./DiagramaAtualizadoEntrega3.png" width="1000px;" alt="Davi"/>
+  <img style="border-radius: 50%" src="diagramas/DiagramaEntrega3.png" width="1000px;" alt="Diagrama de Classes"/>
  <p>Link para vídeo das atualizações: </p>
  <a href="https://youtu.be/7tUJrM01ImM">Link do vídeo</a>
 </div>
 
-<h2>🚀 Deploy do projeto</h2>
+<h2>Entrega 4</h2>
 <div style="display: flex; flex-direction: column;">
- <a href="https://front-projeto-poo.onrender.com/">Projeto rodando na plataforma render</a>
+  <p>Entregas via commit de 3 historias, testes, digramas e video screencast.</p>
+  <p>Diagrama de classes: </p>
+  <img style="border-radius: 50%" src="diagramas/DiagramaEntrega4Parte1.png" width="1000px;" alt="Diagrama de Classes"/>
+ <img style="border-radius: 50%" src="diagramas/DiagramaEntrega4Parte2.png" width="1000px;" alt="Diagrama de Classes"/>
+ <p>Link para vídeo das atualizações: </p>
+ <a href="">Link do vídeo</a>
 </div>
 
 ## 🌐 Autores
