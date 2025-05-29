@@ -27,10 +27,100 @@ O projeto visa modernizar o processo de marcação de horários, permitindo que 
 ---
 
 ## 🧑🏻‍💻 Documentação de Como Rodar a Aplicação
+**Adendo**: Atualmente a aplicação roda em um domínio, logo para poder rodar a aplicação algumas alterações no código precisaram ser feitas
 
-(Em construção)
+### Para rodar o frontend, você precisa ter os seguintes requisitos instalados:
+
+- **Visual Studio Code** ou outra IDE de sua preferência
+
+### Passo 1: GIT clone e Acesse o diretório do frontend
+
+No terminal, clone o repositório e navegue até o diretório do backend:
+
+```bash
+git clone https://github.com/GustavoLino728/JavaCortando-CESAR-POO
+```
+
+```bash
+cd client
+```
+
+* Pode também apenas baixar o arquivo.
 
 ---
+
+### Passo 2: Instale as dependências
+
+Execute o comando abaixo para instalar todas as dependências do React.JS listadas no arquivo package.json:
+
+```bash
+npm install
+```
+
+### Passo 3: Inicie a aplicação
+
+Agora, inicie a aplicação React.js com o comando:
+
+```bash
+npm start
+```
+
+Isso irá rodar o frontend na sua máquina local.
+
+<br>
+
+## Para rodar o backend, você precisa ter os seguintes requisitos instalados:
+
+- **Java** versão 17 (JDK)
+- **Docker** e **Docker Compose** instalados
+
+## Instruções de execução
+
+### Passo 1: Acesse o diretório do backend
+
+No terminal, do repositório já clonado navegue até o diretório do backend:
+
+```bash
+cd server
+```
+
+**AGORA VOCÊ TEM DUAS OPÇÕES, UTILIZAR O DOCKER OU O POSTGRES**
+
+### Alternativa 1 (Melhor): Rodar o Postgres
+
+Vá até o aplication.properties do backend, dentro da aplicação Spring Boot, encontre essas linhas:
+
+```bash
+spring.datasource.url=jdbc:postgresql://dpg-d0os91je5dus73d799bg-a.ohio-postgres.render.com:5432/banco_poo
+spring.datasource.username=user
+spring.datasource.password=zoIjukv1lGDv4HeDcvycXAtHq99NAEk5
+```
+
+E troque por essas linhas
+
+```bash
+spring.datasource.url=jdbc:postgresql://localhost:5432/nomeDoBanco
+spring.datasource.username=user
+spring.datasource.password=password
+```
+
+Normalmente o user é "postgres"
+
+Pronto a partir de agora, você vai precisar criar um banco de dados no postgres e rodar ele.
+
+### Passo 3.2: Suba os containers do Docker
+
+Use o Docker Compose para rodar os containers necessários para o seu backend:
+
+```bash
+docker-compose up -d
+```
+
+Este comando irá iniciar os containers em segundo plano.
+
+### Pronto agora pode rodar a aplicação e acessar "localhost:3000" no navegador 
+
+### LEMBRANDO QUE A APLICAÇÃO ESTÁ RODANDO PELA INTERNET ENTÃO NÃO PRECISA DESSE TRABALHO TODO
 
 ## 📃 Entregas
 
