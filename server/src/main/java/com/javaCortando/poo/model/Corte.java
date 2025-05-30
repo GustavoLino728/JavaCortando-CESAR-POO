@@ -1,13 +1,19 @@
 package com.javaCortando.poo.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "cortes")
@@ -44,8 +50,8 @@ public class Corte {
     public String toString() {
         return "Corte{" +
                 "id=" + id +
-                ", cliente=" + cliente +
-                ", barbeiro=" + barbeiro +
+                ", clienteId=" + (cliente != null ? cliente.getId() : "null") +
+                ", barbeiroId=" + (barbeiro != null ? barbeiro.getId() : "null") +
                 ", data=" + data +
                 ", horario=" + horario +
                 ", preco=" + preco +
