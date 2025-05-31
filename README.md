@@ -24,6 +24,7 @@ O projeto visa modernizar o processo de marcação de horários, permitindo que 
 
 🔗 Acesse: [Projeto rodando na Render](https://front-projeto-poo.onrender.com/)
 
+***Obs: Caso de "Not Found" busque pela url: //front-projeto-poo.onrender.com/***
 ---
 
 ## 🧑🏻‍💻 Documentação de Como Rodar a Aplicação
