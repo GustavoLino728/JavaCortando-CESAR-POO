@@ -151,7 +151,7 @@ Este comando irá iniciar os containers em segundo plano.
 - 📊 Diagramas de classes:
   <img src="diagramas/DiagramaEntrega4Parte1.png" width="1000px;" alt="Diagrama de Classes"/>
   <img src="diagramas/DiagramaEntrega4Parte2.png" width="1000px;" alt="Diagrama de Classes"/>
-- 🎥 Link para vídeo das atualizações: _[Em breve]_
+- 🎥 [Vídeo das atualizações, entrega final](https://youtu.be/suTpgdsBLJQ).
 
 ---
 
